@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .form-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 45px;  
+            width: 100%;
+        }
+        .form-row label {
+            width: 150px;
+            font-weight: bold;
+            margin-right: 10px;
+            text-align: right;
+        }
+        .form-row input, .form-row select {
+            width: 200px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+        .form-row input:focus, .form-row select:focus {
+            border-color: #4CAF50;
+        }
+        .form-row input[type="submit"] {
+            margin-top: 20px;
+            width: auto;
+            background-color: #4CAF50;
+            color: white
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .form-row input[type="submit"]:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        h3 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter the Features for Prediction of CO2 Emission</h2>
+    <div class="form-container">
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class="form-row">
+                <label for="make">Make:</label>
+                <select id="make" name="make" placeholder="Enter Make">
+                    <option value="628">FORD</option>
+                    <option value="587">CHEVROLET</option>
+                    <option value="527">BMW</option>
+                    <option value="419">MERCEDES-BENZ</option>
+                    <option value="376">PORSCHE</option>
+                    <option value="330">TOYOTA</option>
+                    <option value="328">GMC</option>
+                    <option value="286">AUDI</option>
+                    <option value="259">NISSAN</option>
+                    <option value="251">JEEP</option>
+                    <option value="246">DODGE</option>
+                    <option value="231">KIA</option>
+                    <option value="214">HONDA</option>
+                    <option value="210">HYUNDAI</option>
+                    <option value="204">MINI</option>
+                    <option value="197">VOLKSWAGEN</option>
+                    <option value="180">MAZDA</option>
+                    <option value="178">LEXUS</option>
+                    <option value="160">JAGUAR</option>
+                    <option value="158">CADILLAC</option>
+                    <option value="140">SUBARU</option>
+                    <option value="124">VOLVO</option>
+                    <option value="108">INFINITI</option>
+                    <option value="103">BUICK</option>
+                    <option value="97">RAM</option>
+                    <option value="96">LINCOLN</option>
+                    <option value="95">MITSUBISHI</option>
+                    <option value="88">CHRYSLER</option>
+                    <option value="85">LAND ROVER</option>
+                    <option value="73">FIAT</option>
+                    <option value="72">ACURA</option>
+                    <option value="61">MASERATI</option>
+                    <option value="50">ROLLS-ROYCE</option>
+                    <option value="47">ASTON MARTIN</option>
+                    <option value="46">BENTLEY</option>
+                    <option value="41">LAMBORGHINI</option>
+                    <option value="30">ALFA ROMEO</option>
+                    <option value="25">GENESIS</option>
+                    <option value="22">SCION</option>
+                    <option value="7">SMART</option>
+                    <option value="3">BUGATTI</option>
+                    <option value="2">SRT</option>
+                </select>
+                <label for="model">Model:</label>
+                <select id="model" name="model" placeholder="Enter Model">
+                    <!-- Options for Model with numbers in parentheses -->
+                    <option value="32">F-150 FFV 4X4 (32)</option>
+                    <option value="32">F-150 FFV (32)</option>
+                    <option value="27">MUSTANG (27)</option>
+                    <option value="24">FOCUS FFV (24)</option>
+                    <option value="20">SONIC (20)</option>
+                    <option value="20">SONIC 5 (20)</option>
+                    <option value="7">HIGHLANDER (7)</option>
+                    <option value="7">GT-R (7)</option>
+                    <option value="6">MDX SH-AWD (6)</option>
+                    <option value="6">MKT AWD (6)</option>
+                    <option value="5">500X AWD (5)</option>
+                    <option value="5">SIENNA AWD (5)</option>
+                    <option value="5">ESCALADE 4WD (5)</option>
+                    <option value="4">Charger FFV (4)</option>
+                    <option value="4">CRUZE ECO (4)</option>
+                    <option value="4">GENESIS AWD (4)</option>
+                    <option value="4">Charger (4)</option>
+                    <option value="3">CX-5 4WD (Cylinder Deactivation) (3)</option>
+                    <option value="3">FOCUS ST (3)</option>
+                    <option value="3">328i xDRIVE GRAN TURISMO (3)</option>
+                    <option value="3">SHELBY GT350 MUSTANG (3)</option>
+                    <option value="2">Tucson (2)</option>
+                    <option value="2">F-PACE 20d (2)</option>
+                    <option value="2">Optima Hybrid (2)</option>
+                    <option value="9">FLYING SPUR (9)</option>
+                    <option value="9">CIVIC SEDAN (9)</option>
+                    <option value="9">WRX AWD (9)</option>
+                    <option value="9">Sierra (9)</option>
+                </select>
+                <label for="vehicle_class">Vehicle Class:</label>
+                <select id="vehicle_class" name="vehicle_class" placeholder="Enter Vehicle Class">
+                    <option value="SUV - SMALL">SUV - SMALL (1217)</option>
+                    <option value="MID-SIZE">MID-SIZE (1132)</option>
+                    <option value="COMPACT">COMPACT (1022)</option>
+                    <option value="SUV - STANDARD">SUV - STANDARD (735)</option>
+                    <option value="FULL-SIZE">FULL-SIZE (639)</option>
+                    <option value="SUBCOMPACT">SUBCOMPACT (606)</option>
+                    <option value="PICKUP TRUCK - STANDARD">PICKUP TRUCK - STANDARD (538)</option>
+                    <option value="TWO-SEATER">TWO-SEATER (460)</option>
+                    <option value="MINICOMPACT">MINICOMPACT (326)</option>
+                    <option value="STATION WAGON - SMALL">STATION WAGON - SMALL (252)</option>
+                    <option value="PICKUP TRUCK - SMALL">PICKUP TRUCK - SMALL (159)</option>
+                    <option value="MINIVAN">MINIVAN (80)</option>
+                    <option value="SPECIAL PURPOSE VEHICLE">SPECIAL PURPOSE VEHICLE (77)</option>
+                    <option value="VAN - PASSENGER">VAN - PASSENGER (66)</option>
+                    <option value="STATION WAGON - MID-SIZE">STATION WAGON - MID-SIZE (53)</option>
+                    <option value="VAN - CARGO">VAN - CARGO (22)</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <label for="engine_size">Engine Size (L):</label>
+                <input type="text" id="engine_size" name="engine_size" placeholder="Enter Engine Size">
+                <label for="cylinders">Cylinders:</label>
+                <input type="text" id="cylinders" name="cylinders" placeholder="Enter Cylinders">
+                <label for="fuel_city">Fuel Consumption City (L/100 km):</label>
+                <input type="text" id="fuel_city" name="fuel_city" placeholder="Enter Fuel Consumption City">
+            </div>
+            <div class="form-row">
+                <label for="fuel_hwy">Fuel Consumption Hwy (L/100 km):</label>
+                <input type="text" id="fuel_hwy" name="fuel_hwy" placeholder="Enter Fuel Consumption Hwy">
+                <label for="fuel_comb">Fuel Consumption Comb (L/100 km):</label>
+                <input type="text" id="fuel_comb" name="fuel_comb" placeholder="Enter Fuel Consumption Comb">
+                <label for="fuel_mpg">Fuel Consumption Comb (mpg):</label>
+                <input type="text" id="fuel_mpg" name="fuel_mpg" placeholder="Enter Fuel Consumption Comb (mpg)">
+            </div>
+            <div class="form-row">
+                <label for="fuel_type">Fuel Type:</label>
+                <select id="fuel_type" name="fuel_type">
+                    <option value="ethanol">Ethanol</option>
+                    <option value="premium">Premium Gasoline</option>
+                    <option value="regular">Regular Gasoline</option>
+                </select>
+                <label for="transmission">Transmission Type:</label>
+                <select id="transmission" name="transmission">
+                    <option value="AM">Automated Manual</option>
+                    <option value="AS">Automatic of Selective type</option>
+                    <option value="CVT">CVT</option>
+                    <option value="M">Manual</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <input type="submit" value="Predict">
+            </div>
+        </form>
+        <h3>{{ prediction_text }}</h3>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            width: 400px;
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter the Features for Prediction</h2>
+    <form action="{{ url_for('predict') }}" method="post">
+        <label for="feature1">Make:</label>
+        <input type="text" id="feature1" name="make" placeholder="Enter Make"><br>
+        
+        <label for="feature2">Model:</label>
+        <input type="text" id="feature2" name="model" placeholder="Enter Model"><br>
+        
+        <label for="feature3">Vehicle Class:</label>
+        <input type="text" id="feature3" name="vehicle_class" placeholder="Enter Vehicle Class"><br>
+        
+        <label for="feature4">Engine Size (L):</label>
+        <input type="text" id="feature4" name="engine_size" placeholder="Enter Engine Size"><br>
+        
+        <label for="feature5">Cylinders:</label>
+        <input type="text" id="feature5" name="cylinders" placeholder="Enter Cylinders"><br>
+        
+        <label for="feature6">Fuel Consumption City (L/100 km):</label>
+        <input type="text" id="feature6" name="fuel_city" placeholder="Enter Fuel Consumption City"><br>
+        
+        <label for="feature7">Fuel Consumption Hwy (L/100 km):</label>
+        <input type="text" id="feature7" name="fuel_hwy" placeholder="Enter Fuel Consumption Hwy"><br>
+        
+        <label for="feature8">Fuel Consumption Comb (L/100 km):</label>
+        <input type="text" id="feature8" name="fuel_comb" placeholder="Enter Fuel Consumption Comb"><br>
+        
+        <label for="feature9">Fuel Consumption Comb (mpg):</label>
+        <input type="text" id="feature9" name="fuel_mpg" placeholder="Enter Fuel Consumption Comb (mpg)"><br>
+
+       <label for="feature10">Fuel Ethanol:</label>
+        <input type="text" id="feature10" name="fuel_ethanol" placeholder="Enter Fuel Ethanol"><br>
+        
+        <label for="feature11">Fuel Premium Gasoline:</label>
+        <input type="text" id="feature11" name="fuel_premium" placeholder="Enter Fuel Premium Gasoline"><br>
+        
+        <label for="feature12">Fuel Regular Gasoline:</label>
+        <input type="text" id="feature12" name="fuel_regular" placeholder="Enter Fuel Regular Gasoline"><br> -->
+ 
+        <!-- <label for="fuel_type">Fuel Type:</label><br>
+        <select id="fuel_type" name="fuel_type">
+          <option value="ethanol">Ethanol</option>
+          <option value="premium">Premium Gasoline</option>
+          <option value="regular">Regular Gasoline</option>
+        </select><br>
+        
+        <label for="transmission">Transmission Type:</label>
+        <select id="transmission" name="transmission">
+            <option value="AM">AM</option>
+            <option value="AS">AS</option>
+            <option value="CVT">CVT</option>
+            <option value="M">M</option>
+        </select><br><br>
+        
+        <input type="submit" value="Predict">
+    </form>
+    <h3>{{ prediction_text }}</h3>
+</body>
+</html>  -->
