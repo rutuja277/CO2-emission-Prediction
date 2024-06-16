@@ -2,7 +2,7 @@
 
 This project aims to predict the CO2 emissions of different vehicles based on their features using various regression models. The dataset used contains information about various car models, including make, model, vehicle class, engine size, cylinders, transmission, fuel type, and fuel consumption. The goal is to create a reliable model that can predict the CO2 emissions for a given set of vehicle features.
 
-![CO2 Emissions](images/co2_emissions_banner.png)
+![CO2 Emissions](images/co2_emissions_banner.jpg)
 
 ## Table of Contents
 
